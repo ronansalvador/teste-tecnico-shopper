@@ -1,7 +1,7 @@
 interface IProduct {
-    code: number;
-    name: string;
-    cost_price: number;
+    code: number | string;
+    name?: string;
+    cost_price?: number;
     sales_price: number
   }
 
