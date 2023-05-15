@@ -1,10 +1,5 @@
 import * as express from 'express';
-// const swaggerUi = require('swagger-ui-express')
-// const swaggerFile = require('../swagger_output.json')
-// import loginRoute from './routes/loginRoute';
-// import matchRoute from './routes/matchRoute';
-// import teamRoute from './routes/teamRoute';
-// import leaderboardRoute from './routes/leaderboardRoute';
+import productRouter from './routers/products.routes';
 
 class App {
   public app: express.Express;
@@ -28,11 +23,8 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
-    // this.app.use('/login', loginRoute);
-    // this.app.use('/teams', teamRoute);
-    // this.app.use('/matches', matchRoute);
-    // this.app.use('/leaderboard', leaderboardRoute);
-    // this.app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+    this.app.use('/products', productRouter);
+
   }
 
   public start(PORT: string | number):void {
