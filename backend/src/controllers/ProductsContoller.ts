@@ -48,7 +48,5 @@ export default class ProductsController {
     return res.send(products);
   }
 
-
-    
   }
 }
