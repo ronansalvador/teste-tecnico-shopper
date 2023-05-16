@@ -27,3 +27,12 @@
 ```
 
 - Acesse a aplicação no endereço: http://localhost:5173/
+
+## Após finalizar a aplicação:
+
+- Encerrar utilização da porta 3001 via linux
+
+```bash
+  sudo kill -9 `sudo lsof -t -i:3001`
+```
+
