@@ -10,5 +10,6 @@ const productsController = new ProductsController();
 
 productRouter.get('/', productsController.findAll);
 productRouter.post('/', multerconfig.single("file"), productsController.addFile );
+productRouter.post('/update', productsController.updateAll );
 
 export default productRouter;
