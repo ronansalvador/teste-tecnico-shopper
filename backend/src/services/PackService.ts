@@ -8,4 +8,9 @@ export default class PackService {
     const result = await this.model.findAll({where: {product_id: product}, raw: true});
     return result;
   }
+
+  public async findByPack(pack: number) {
+    const result = await this.model.findAll({where: {pack_id: pack}, raw: true});
+    return result;
+  }
 }

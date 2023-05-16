@@ -66,7 +66,7 @@ export default class ProductsController {
 
       const validateProduct = (oldProduct: IProduct) => {
         let status = 'ok'
-        if (oldProduct.sales_price > product.sales_price) {
+        if (oldProduct.cost_price !== undefined && oldProduct.cost_price > product.sales_price) {
           status = 'o novo valor de venda não pode ser menor que o valor de custo'
         }
 
@@ -104,26 +104,34 @@ export default class ProductsController {
 
   public updatePrice = async (oldProduct: IUpdateProduct) => {
     const update = await this.service.updatePrice(Number(oldProduct.new_price), Number(oldProduct.code))
+    console.log(update);
     const pack = await this.servicePack.findByProduct(Number(oldProduct.code));
-    console.log('pack', pack);
+    const isPack = await this.servicePack.findByPack(Number(oldProduct.code));
     if(pack.length > 0) {
       for await (let productPack of pack) {
       const newPrice = productPack.qty * Number(oldProduct.new_price)
-      const updatepack = this.service.updatePrice(Number(newPrice), Number(productPack.pack_id))
+      const updatepack = await this.service.updatePrice(Number(newPrice), Number(productPack.pack_id))
       console.log('updatepack', updatepack)
     }
+
+    if(isPack.length > 0) {
+      console.log('é um pacote');
+      for await (let productPack of isPack) {
+      const newPrice = productPack.qty / Number(oldProduct.new_price)
+      const updatepack = await this.service.updatePrice(Number(newPrice), Number(productPack.product_id))
+      console.log('updatepack', updatepack)
+    }
+  }
     // se ele existir no pack preciso fazer um novo update passando o valor do pack.
   }
   }
   public updateAll:RequestHandler = async(req, res) => {
     const {products} = req.body
-    console.log(products)
+    console.log('produtos no update all', products)
     const updatedProducts: IUpdateProduct[] = [];
     for await (let product of products) {
-    const teste = this.updatePrice(product)
-    if (!teste) {
-      continue
-    }
+    await this.updatePrice(product)
+
     updatedProducts.push(product);
     }
     return res.send(updatedProducts);
