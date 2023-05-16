@@ -8,6 +8,7 @@
     "start": "npm run build && node ./dist/index.js",
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "dev": "nodemon --watch \"./src/**\" ./src/server.ts",
+    "stop": "pkill nodemon",
     "build": "/bin/sh tsc_eval.sh"
   },
   "keywords": [],
