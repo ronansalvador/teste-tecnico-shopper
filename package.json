@@ -1,0 +1,13 @@
+{
+  "name": "controle-clinica",
+  "version": "1.0.0",
+  "description": "contole clinica",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "./install.sh",
+    "start": "docker-compose up -d && npm run install"
+  },
+  "author": "Ronan Salvador",
+  "license": "ISC"
+}
