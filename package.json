@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "./install.sh",
-    "start": "docker-compose up -d && npm run install",
-    "stop": "./uninstall.sh"
+    "backend": "cd backend && npm i && cd ..",
+    "start:backend": "cd backend && npm run dev",
+    "start:frontend": "cd frontend && npm run dev",
+    "frontend": "cd frontend && npm i",
+    "install": "npm run backend && npm run frontend",
+    "docker-compose:up": "docker-compose up -d"
   },
   "author": "Ronan Salvador",
   "license": "ISC"

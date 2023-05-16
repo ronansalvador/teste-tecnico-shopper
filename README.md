@@ -17,16 +17,29 @@
 - Instale as dependências do projeto
 
 ```bash
-  npm install
+  npm run install
 ```
 
-- Inicie a aplicação
+- Execute o comando Docker para iniciar um container com o MySQL
 
 ```bash
-  npm start
+  npm run docker-compose:up
 ```
 
-- Acesse a aplicação no endereço: http://localhost:5173/
+- Inicie a aplicação Backend
+
+```bash
+  npm run start:backend
+```
+
+- Abra um novo terminal e inicia a aplicação Frontend
+
+
+```bash
+  npm run start:frontend
+```
+
+- Acesse a aplicação no endereço: http://localhost:5173/ ou clique no link gerado em seu terminal
 
 ## Após finalizar a aplicação:
 
